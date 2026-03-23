@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Privacy Policy — summeriser.</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✦</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&family=Instrument+Serif:ital@0;1&family=Martian+Mono:wght@300;400;700&display=swap" rel="stylesheet"/>
+<style>
+
+/* ───────────────────────── RESET */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+/* ───────────────────────── TOKENS */
+:root{
+  --acc:#f97316;--acc2:#ea580c;--acc3:#fbbf24;
+  --glow:rgba(249,115,22,.35);
+  --r-lg:20px;--r-xl:28px;--r-2xl:40px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+[data-theme=dark]{
+  --bg:#04070f;--bg2:#080d1a;--bg3:#0c1220;
+  --card:#0d1526;--border:rgba(148,163,184,.12);
+  --bhi:rgba(148,163,184,.24);
+  --tx:#dde4f0;--mu:#7a889c;--hd:#f0f4fa;
+  --hbg:rgba(4,7,15,.88);
+}
+[data-theme=light]{
+  --bg:#f7f5f0;--bg2:#ede9e0;--bg3:#e5e0d6;
+  --card:#ffffff;--border:rgba(0,0,0,.07);
+  --bhi:rgba(0,0,0,.13);
+  --tx:#3a3630;--mu:#7a7268;--hd:#1a1612;
+  --hbg:rgba(247,245,240,.9);
+}
+
+/* ───────────────────────── BASE */
+html{scroll-behavior:smooth}
+body{
+  font-family:"DM Sans",system-ui,sans-serif;
+  background:var(--bg);color:var(--tx);
+  min-height:100vh;overflow-x:hidden;
+  transition:background .5s,color .5s;
+  cursor:none;
+}
+
+/* ───────────────────────── CUSTOM CURSOR */
+#cursor{
+  position:fixed;width:10px;height:10px;
+  background:var(--acc);border-radius:50%;
+  pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:transform .1s,width .25s var(--ease),height .25s var(--ease),opacity .25s;
+  mix-blend-mode:exclusion;
+}
+#cursor-ring{
+  position:fixed;width:36px;height:36px;
+  border:1.5px solid rgba(249,115,22,.5);
+  border-radius:50%;pointer-events:none;z-index:9998;
+  transform:translate(-50%,-50%);
+  transition:transform .18s var(--ease),width .3s var(--ease),height .3s var(--ease),opacity .3s,border-color .3s;
+}
+body:has(a:hover) #cursor-ring,
+body:has(button:hover) #cursor-ring{width:52px;height:52px;border-color:var(--acc)}
+
+/* ───────────────────────── NOISE OVERLAY */
+#noise{
+  position:fixed;inset:0;pointer-events:none;z-index:1;
+  opacity:.025;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px 200px;
+  animation:noise-shift 8s steps(2) infinite;
+}
+@keyframes noise-shift{
+  0%{background-position:0 0}25%{background-position:-30px 15px}
+  50%{background-position:10px -20px}75%{background-position:-15px 25px}
+}
+[data-theme=light] #noise{opacity:.04}
+
+/* ───────────────────────── CONTAINER */
+.wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 28px}
+
+/* ───────────────────────── HEADER */
+.hdr{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  backdrop-filter:blur(24px) saturate(160%);
+  background:var(--hbg);
+  border-bottom:1px solid var(--border);
+  transition:background .5s,border-color .5s,box-shadow .3s;
+}
+.hdr.scrolled{box-shadow:0 6px 32px rgba(0,0,0,.22)}
+.hdr-in{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:15px 28px;gap:20px;
+}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+.brand-glyph{
+  width:34px;height:34px;border-radius:10px;
+  background:linear-gradient(135deg,var(--acc),var(--acc2));
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;color:#fff;
+  box-shadow:0 4px 16px var(--glow);
+  transition:transform .3s var(--ease),box-shadow .3s;
+  animation:glyph-spin 6s linear infinite;
+}
+@keyframes glyph-spin{
+  0%,90%{transform:rotate(0deg)}95%{transform:rotate(15deg)}100%{transform:rotate(0deg)}
+}
+.brand:hover .brand-glyph{transform:scale(1.12);box-shadow:0 8px 28px var(--glow)}
+.brand-name{font-size:19px;font-weight:700;letter-spacing:-.04em;color:var(--hd);transition:color .5s}
+.nav{display:flex;align-items:center;gap:28px}
+.nav-a{
+  font-size:13.5px;font-weight:500;text-decoration:none;color:var(--mu);
+  position:relative;padding-bottom:2px;transition:color .2s;
+}
+.nav-a::after{
+  content:"";position:absolute;left:0;bottom:0;
+  width:0;height:1.5px;background:var(--acc);border-radius:2px;
+  transition:width .25s var(--ease);
+}
+.nav-a:hover{color:var(--hd)}
+.nav-a:hover::after{width:100%}
+.hdr-r{display:flex;align-items:center;gap:10px}
+
+/* ───────────────────────── THEME TOGGLE */
+.thm-btn{
+  width:38px;height:38px;border-radius:10px;border:1px solid var(--bhi);
+  background:var(--card);cursor:none;
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+  transition:background .5s,border-color .5s,transform .25s var(--ease);
+}
+.thm-btn:hover{transform:rotate(25deg) scale(1.1)}
+
+/* ───────────────────────── BUTTONS */
+.btn{
+  border-radius:99px;border:1px solid transparent;
+  font-size:14px;font-weight:600;font-family:inherit;
+  padding:9px 22px;cursor:none;text-decoration:none;
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  transition:transform .22s var(--ease),box-shadow .22s,background .22s,border-color .22s,color .22s;
+  white-space:nowrap;position:relative;overflow:hidden;
+}
+.btn-p{
+  background:linear-gradient(135deg,var(--acc),var(--acc2));
+  color:#fff;box-shadow:0 8px 24px var(--glow);
+}
+.btn-p:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 16px 36px var(--glow)}
+.btn-g{background:transparent;color:var(--mu);border-color:var(--bhi)}
+.btn-g:hover{color:var(--hd);border-color:var(--tx);transform:translateY(-1px)}
+
+/* ───────────────────────── REVEAL */
+.r{opacity:0;transition:opacity .85s var(--ease),transform .85s var(--ease)}
+.r.up{transform:translateY(50px)}
+.r.on{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+.d4{transition-delay:.4s}.d5{transition-delay:.5s}
+
+/* ───────────────────────── SECTION LABELS */
+.sec-lbl{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:"Martian Mono",monospace;
+  font-size:10.5px;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--acc);margin-bottom:18px;
+}
+.sec-lbl::before{
+  content:"";width:20px;height:1.5px;
+  background:var(--acc);border-radius:2px;
+}
+
+/* ───────────────────────── PAGE HERO */
+.pp-hero{
+  padding:148px 0 80px;
+  background:radial-gradient(ellipse 100% 60% at 50% 0%, rgba(249,115,22,.14) 0%, transparent 60%), var(--bg);
+  border-bottom:1px solid var(--border);
+  position:relative;overflow:hidden;
+  transition:background .5s,border-color .5s;
+}
+
+/* deco rings identical to main site */
+.pp-ring{
+  position:absolute;border-radius:50%;pointer-events:none;
+  border:1px dashed rgba(249,115,22,.12);
+}
+.pp-ring-1{width:600px;height:600px;top:-260px;right:-180px;animation:ring-spin 30s linear infinite}
+.pp-ring-2{width:320px;height:320px;bottom:-120px;left:-80px;animation:ring-spin 20s linear infinite reverse;border-color:rgba(99,102,241,.1)}
+@keyframes ring-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+.pp-hero-in{
+  max-width:760px;text-align:left;position:relative;z-index:2;
+}
+.pp-crumb{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;color:var(--mu);margin-bottom:24px;text-decoration:none;
+  transition:color .2s;
+}
+.pp-crumb:hover{color:var(--acc)}
+.pp-crumb svg{flex-shrink:0;transition:transform .2s var(--ease)}
+.pp-crumb:hover svg{transform:translateX(-3px)}
+
+.pp-hero-h{
+  font-family:"Instrument Serif",Georgia,serif;
+  font-size:clamp(2.8rem,5vw,4.4rem);
+  line-height:1.06;letter-spacing:-.028em;
+  color:var(--hd);margin-bottom:16px;
+  transition:color .5s;
+}
+.pp-hero-h em{
+  font-style:italic;
+  background:linear-gradient(120deg,var(--acc),var(--acc3));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.pp-hero-sub{
+  font-size:16px;line-height:1.7;color:var(--mu);
+  max-width:480px;transition:color .5s;
+}
+.pp-meta{
+  display:flex;align-items:center;gap:20px;flex-wrap:wrap;
+  margin-top:32px;padding-top:24px;
+  border-top:1px solid var(--border);
+  font-family:"Martian Mono",monospace;
+  font-size:11px;letter-spacing:.08em;color:var(--mu);
+  transition:border-color .5s,color .5s;
+}
+.pp-meta span{display:flex;align-items:center;gap:7px}
+.pp-meta strong{color:var(--tx);transition:color .5s}
+
+/* ───────────────────────── TOC + CONTENT LAYOUT */
+.pp-layout{
+  display:grid;
+  grid-template-columns:220px 1fr;
+  gap:64px;
+  align-items:flex-start;
+  padding:72px 0 100px;
+}
+
+/* ── sticky TOC sidebar */
+.pp-toc{
+  position:sticky;top:100px;
+}
+.pp-toc-title{
+  font-family:"Martian Mono",monospace;
+  font-size:10px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--mu);
+  margin-bottom:16px;transition:color .5s;
+}
+.pp-toc-list{
+  list-style:none;
+  display:flex;flex-direction:column;gap:2px;
+}
+.pp-toc-list a{
+  font-size:13px;color:var(--mu);text-decoration:none;
+  padding:6px 10px 6px 14px;
+  border-left:2px solid var(--border);
+  display:block;
+  transition:color .2s,border-color .2s,background .2s;
+  border-radius:0 6px 6px 0;
+}
+.pp-toc-list a:hover{
+  color:var(--acc);
+  border-left-color:var(--acc);
+  background:rgba(249,115,22,.05);
+}
+.pp-toc-list a.active{
+  color:var(--acc);
+  border-left-color:var(--acc);
+  background:rgba(249,115,22,.07);
+  font-weight:600;
+}
+
+/* ── main content */
+.pp-content{}
+
+.pp-section{
+  margin-bottom:64px;
+  scroll-margin-top:110px;
+}
+.pp-section:last-child{margin-bottom:0}
+
+.pp-section-num{
+  font-family:"Martian Mono",monospace;
+  font-size:10px;font-weight:700;letter-spacing:.14em;
+  color:var(--acc);text-transform:uppercase;
+  display:block;margin-bottom:8px;
+}
+.pp-section h2{
+  font-family:"Instrument Serif",serif;
+  font-size:clamp(1.5rem,2.8vw,2rem);
+  letter-spacing:-.02em;
+  color:var(--hd);margin-bottom:18px;
+  transition:color .5s;
+}
+.pp-section p{
+  font-size:15px;line-height:1.78;
+  color:var(--tx);margin-bottom:14px;
+  transition:color .5s;
+}
+.pp-section p:last-child{margin-bottom:0}
+
+.pp-section ul{
+  list-style:none;
+  display:flex;flex-direction:column;
+  gap:10px;margin-bottom:14px;
+}
+.pp-section li{
+  font-size:15px;line-height:1.66;
+  color:var(--tx);
+  padding-left:22px;position:relative;
+  transition:color .5s;
+}
+.pp-section li::before{
+  content:"▸";
+  position:absolute;left:0;
+  color:var(--acc);font-size:12px;margin-top:2px;
+}
+
+/* ── highlight callout */
+.pp-callout{
+  background:rgba(249,115,22,.07);
+  border:1px solid rgba(249,115,22,.2);
+  border-left:3px solid var(--acc);
+  border-radius:12px;
+  padding:16px 20px;
+  margin:20px 0;
+  font-size:14px;
+  line-height:1.7;
+  color:var(--tx);
+  transition:color .5s,background .5s,border-color .5s;
+}
+.pp-callout strong{color:var(--hd)}
+
+/* ── section divider */
+.pp-div{
+  width:100%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--bhi),transparent);
+  margin-bottom:64px;
+}
+
+/* ── contact card */
+.pp-contact{
+  background:var(--card);
+  border:1px solid var(--bhi);
+  border-radius:var(--r-xl);
+  padding:32px 36px;
+  margin-top:20px;
+  position:relative;overflow:hidden;
+  transition:background .5s,border-color .5s;
+}
+.pp-contact::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 60% at 0% 0%, rgba(249,115,22,.06), transparent 60%);
+  pointer-events:none;
+}
+.pp-contact-row{
+  display:flex;align-items:baseline;gap:10px;
+  margin-bottom:10px;font-size:15px;
+}
+.pp-contact-row:last-child{margin-bottom:0}
+.pp-contact-row strong{
+  min-width:100px;font-size:13px;font-weight:700;
+  letter-spacing:.04em;color:var(--mu);
+  font-family:"Martian Mono",monospace;text-transform:uppercase;
+  transition:color .5s;
+}
+.pp-contact-row span{color:var(--tx);transition:color .5s}
+.pp-contact-row a{
+  color:var(--acc);text-decoration:none;
+  transition:opacity .2s;
+}
+.pp-contact-row a:hover{opacity:.75}
+
+/* ───────────────────────── FOOTER */
+.ftr{border-top:1px solid var(--border);padding:44px 0 38px;transition:border-color .5s}
+.ftr-in{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.ftr-tag{font-size:13px;color:var(--mu);margin-top:4px;transition:color .5s}
+.ftr-links{display:flex;gap:24px;flex-wrap:wrap}
+.ftr-links a{font-size:13px;color:var(--mu);text-decoration:none;transition:color .2s}
+.ftr-links a:hover{color:var(--hd)}
+
+/* ───────────────────────── RESPONSIVE */
+@media(max-width:860px){
+  .pp-layout{grid-template-columns:1fr;gap:40px}
+  .pp-toc{position:static}
+}
+@media(max-width:680px){
+  .nav{display:none}
+  .pp-hero{padding-top:110px}
+  .pp-contact{padding:22px 20px}
+  .ftr-in{flex-direction:column;align-items:flex-start}
+}
+
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- NOISE -->
+<div id="noise"></div>
+
+<!-- ════════════════════════════════ HEADER -->
+<header class="hdr" id="hdr">
+  <div class="hdr-in">
+    <a href="index.html" class="brand">
+      <div class="brand-glyph">✦</div>
+      <span class="brand-name">summeriser.</span>
+    </a>
+    <nav class="nav">
+      <a href="index.html#features"     class="nav-a">Features</a>
+      <a href="index.html#how-it-works" class="nav-a">How it works</a>
+      <a href="index.html#pricing"      class="nav-a">Pricing</a>
+      <a href="index.html#faq"          class="nav-a">FAQ</a>
+    </nav>
+    <div class="hdr-r">
+      <button class="thm-btn" id="thm" aria-label="Toggle theme">🌙</button>
+      <a href="https://chrome.google.com/webstore" class="btn btn-p" target="_blank" rel="noreferrer">Add to Chrome</a>
+    </div>
+  </div>
+</header>
+
+<!-- ════════════════════════════════ HERO -->
+<section class="pp-hero">
+  <div class="pp-ring pp-ring-1"></div>
+  <div class="pp-ring pp-ring-2"></div>
+  <div class="wrap">
+    <div class="pp-hero-in">
+      <a href="index.html" class="pp-crumb r up">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Back to summeriser.
+      </a>
+      <div class="sec-lbl r up d1">Legal</div>
+      <h1 class="pp-hero-h r up d2">Your privacy,<br><em>plainly stated.</em></h1>
+      <p class="pp-hero-sub r up d3">We believe you should know exactly what happens to your data — in plain language, not legalese.</p>
+      <div class="pp-meta r up d4">
+        <span>✦ <strong>Effective</strong> March 23, 2026</span>
+        <span>✦ <strong>Version</strong> 1.0</span>
+        <span>✦ <strong>Extension</strong> v1.0.1</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════ CONTENT -->
+<main>
+  <div class="wrap">
+    <div class="pp-layout">
+
+      <!-- TOC SIDEBAR -->
+      <aside class="pp-toc" aria-label="Table of contents">
+        <p class="pp-toc-title">Contents</p>
+        <ol class="pp-toc-list">
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#data-collected">Data We Collect</a></li>
+          <li><a href="#data-not-collected">Data We Don't Collect</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#third-parties">Third-Party Services</a></li>
+          <li><a href="#storage">Local Storage</a></li>
+          <li><a href="#children">Children's Privacy</a></li>
+          <li><a href="#changes">Policy Changes</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <div class="pp-content">
+
+        <div class="pp-section r up" id="overview">
+          <span class="pp-section-num">01 — Overview</span>
+          <h2>The short version</h2>
+          <div class="pp-callout">
+            <strong>Bottom line:</strong> We do not collect, store, or sell your personal data. Page content is sent to our AI service solely to generate your summary and is not retained after your request completes.
+          </div>
+          <p>summeriser. ("the Extension") is a browser extension that uses AI to summarize web articles, PDFs, and YouTube videos, and allows you to ask questions and take quizzes about that content. This policy explains how we handle information when you use the Extension.</p>
+        </div>
+
+        <div class="pp-div"></div>
+
+        <div class="pp-section r up" id="data-collected">
+          <span class="pp-section-num">02 — Data We Collect</span>
+          <h2>What's sent to our server</h2>
+          <p>When you click Summarize, the Extension transmits the following to our Cloudflare Worker solely to process your request:</p>
+          <ul>
+            <li>The extracted text content of the current page (article body, PDF text, or YouTube transcript)</li>
+            <li>Your selected settings (summary length, response length)</li>
+            <li>Questions you type into the Q&amp;A tab</li>
+          </ul>
+          <p>All transmission is over HTTPS. This data is used only to generate your response — it is not logged, stored, or linked to any identifier after your request is fulfilled.</p>
+        </div>
+
+        <div class="pp-div"></div>
+
+        <div class="pp-section r up" id="data-not-collected">
+          <span class="pp-section-num">03 — Data We Don't Collect</span>
+          <h2>What we never touch</h2>
+          <p>We do not collect, store, or process any of the following:</p>
+          <ul>
+            <li>Your name, email address, or any account information</li>
+            <li>Your browsing history or the URLs you visit</li>
+            <li>Cookies or tracking identifiers of any kind</li>
+            <li>Any data from pages where you don't trigger the Extension</li>
+            <li>Analytics, telemetry, or usage statistics</li>
+            <li>Payment or financial information</li>
+          </ul>
+        </div>
+
+        <div class="pp-div"></div>
+
+        <div class="pp-section r up" id="how-it-works">
+          <span class="pp-section-num">04 — How It Works</span>
+          <h2>The data flow, step by step</h2>
+          <p>When you click "Summarize", the Extension reads the visible text of the current page using a content script running entirely in your browser. That text is then sent to our backend API worker hosted on Cloudflare Workers.</p>
+          <p>The Worker forwards the content to a Groq AI model (Llama-3.3-70B) to generate your summary, then streams the result directly back to your browser popup.</p>
+          <p>No content is written to any database. The worker processes each request in memory and discards all data once the response has been delivered.</p>
+        </div>
+
+        <div class="pp-div"></div>
+
+        <div class="pp-section r up" id="third-parties">
+          <span class="pp-section-num">05 — Third-Party Services</span>
+          <h2>Who else is involved</h2>
+          <p>The Extension relies on the following third-party infrastructure to process requests:</p>
+          <ul>
+            <li><strong>Cloudflare Workers</strong> — our serverless backend runtime. Subject to <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">Cloudflare's Privacy Policy</a>.</li>
+            <li><strong>Groq (Llama-3.3-70B)</strong> — AI model provider used to generate summaries and Q&amp;A responses. Content you send is not used to train models per Groq's data policy.</li>
+          </ul>
+          <p>We do not share your data with advertisers, data brokers, analytics providers, or any other third parties beyond those listed above.</p>
+        </div>
+
+        <div class="pp-div"></div>
+
+        <div class="pp-section r up" id="storage">
+          <span class="pp-section-num">06 — Local Storage</span>
+          <h2>What stays on your device</h2>
+          <p>The Extension uses Chrome's <code style="font-family:'Martian Mono',monospace;font-size:13px;background:rgba(249,115,22,.1);padding:2px 7px;border-radius:5px;color:var(--acc)">storage</code> API to save your preferences (theme, summary length, response length) locally on your device. This data never leaves your browser and is only used to restore your settings between sessions. You can clear it at any time via Chrome's extension settings.</p>
+        </div>
+
+        <div class="pp-div"></div>
+
+        <div class="pp-section r up" id="children">
+          <span class="pp-section-num">07 — Children's Privacy</span>
+          <h2>Under 13</h2>
+          <p>summeriser. is not directed at children under the age of 13. We do not knowingly collect any personal information from children. If you believe a child has submitted content through the Extension, please contact us and we will take immediate steps to address it.</p>
+        </div>
+
+        <div class="pp-div"></div>
+
+        <div class="pp-section r up" id="changes">
+          <span class="pp-section-num">08 — Policy Changes</span>
+          <h2>When this policy updates</h2>
+          <p>We may update this Privacy Policy from time to time to reflect changes in our practices or for operational, legal, or regulatory reasons. When we do, we will update the effective date shown at the top of this page.</p>
+          <p>We encourage you to review this page periodically. Continued use of the Extension after any update constitutes your acceptance of the revised policy.</p>
+        </div>
+
+        <div class="pp-div"></div>
+
+        <div class="pp-section r up" id="contact">
+          <span class="pp-section-num">09 — Contact</span>
+          <h2>Get in touch</h2>
+          <p>If you have any questions, concerns, or requests regarding this Privacy Policy or the way summeriser. handles data, reach out to us:</p>
+          <div class="pp-contact">
+            <div class="pp-contact-row">
+              <strong>Developer</strong>
+              <span>Devminds</span>
+            </div>
+            <div class="pp-contact-row">
+              <strong>Publisher ID</strong>
+              <span style="font-family:'Martian Mono',monospace;font-size:12px;">oahpocbcaapmlobmokkbjglbddmmghmn</span>
+            </div>
+            <div class="pp-contact-row">
+              <strong>Email</strong>
+              <a href="mailto:privacy@devminds.dev">privacy@devminds.dev</a>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /pp-content -->
+    </div><!-- /pp-layout -->
+  </div><!-- /wrap -->
+</main>
+
+<!-- ════════════════════════════════ FOOTER -->
+<footer class="ftr">
+  <div class="wrap ftr-in">
+    <div>
+      <span class="brand-name">summeriser.</span>
+      <p class="ftr-tag">AI summaries, Q&amp;A and quizzes for everything you read.</p>
+    </div>
+    <div class="ftr-links">
+      <a href="index.html#features">Features</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="privacy.html" style="color:var(--acc)">Privacy</a>
+      <a href="https://chrome.google.com/webstore" target="_blank" rel="noreferrer">Chrome Store</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ─── CUSTOM CURSOR */
+const cur=document.getElementById('cursor');
+const ring=document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cur.style.left=mx+'px';cur.style.top=my+'px';
+});
+(function animRing(){
+  rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  requestAnimationFrame(animRing);
+})();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.width='18px';cur.style.height='18px'});
+  el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px'});
+});
+
+/* ─── THEME TOGGLE */
+const html=document.documentElement;
+const thm=document.getElementById('thm');
+function setTheme(t){
+  html.setAttribute('data-theme',t);
+  thm.textContent=t==='dark'?'🌙':'☀️';
+  localStorage.setItem('s-theme',t);
+}
+thm.addEventListener('click',()=>setTheme(html.dataset.theme==='dark'?'light':'dark'));
+const saved=localStorage.getItem('s-theme');
+if(saved)setTheme(saved);
+else if(matchMedia('(prefers-color-scheme:light)').matches)setTheme('light');
+
+/* ─── HEADER SCROLL SHADOW */
+const hdr=document.getElementById('hdr');
+window.addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>10),{passive:true});
+
+/* ─── SCROLL REVEAL */
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target)}});
+},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.r').forEach(el=>obs.observe(el));
+setTimeout(()=>document.querySelectorAll('.pp-hero .r').forEach(el=>el.classList.add('on')),80);
+
+/* ─── ACTIVE TOC LINK */
+const sections=document.querySelectorAll('.pp-section[id]');
+const tocLinks=document.querySelectorAll('.pp-toc-list a');
+const tocObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      tocLinks.forEach(a=>a.classList.remove('active'));
+      const active=document.querySelector(`.pp-toc-list a[href="#${e.target.id}"]`);
+      if(active)active.classList.add('active');
+    }
+  });
+},{threshold:.4,rootMargin:'-80px 0px -60% 0px'});
+sections.forEach(s=>tocObs.observe(s));
+</script>
+</body>
+</html>
